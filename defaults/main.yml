@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-set_server_timezone
+
+_set_server_timezone:
+  timezone: "Europe/Berlin"
+
