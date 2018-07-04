@@ -11,4 +11,3 @@
 - name: Reconfigure tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
   when: set_timezone|changed
-
