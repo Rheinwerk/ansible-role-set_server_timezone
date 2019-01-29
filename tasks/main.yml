@@ -5,9 +5,15 @@
 # vim:et:ts=2:ft=ansible
 
 - name: Set Timezone
-  copy: content='{{ _set_server_timezone.timezone }}\n' dest=/etc/timezone owner=root group=root mode=0644 backup=no
+  copy:
+    content: '{{ _set_server_timezone.timezone }}\n'
+    dest: /etc/timezone
+    owner: root
+    group: root
+    mode: 0644
+    backup: no
   register: set_timezone
 
 - name: Reconfigure tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
-  when: set_timezone|changed
+  when: set_timezone is changed
