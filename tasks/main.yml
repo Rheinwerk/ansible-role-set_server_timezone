@@ -4,16 +4,23 @@
 #
 # vim:et:ts=2:ft=ansible
 
-- name: Set Timezone
-  copy:
-    content: '{{ _set_server_timezone.timezone }}\n'
-    dest: /etc/timezone
-    owner: root
-    group: root
-    mode: 0644
-    backup: no
-  register: set_timezone
+- block:
+    - name: Set Timezone
+      copy:
+        content: '{{ _set_server_timezone.timezone }}\n'
+        dest: /etc/timezone
+        owner: root
+        group: root
+        mode: 0644
+        backup: no
+      register: set_timezone
 
-- name: Reconfigure tzdata
-  command: dpkg-reconfigure --frontend noninteractive tzdata
-  when: set_timezone is changed
+    - name: Reconfigure tzdata
+      command: dpkg-reconfigure --frontend noninteractive tzdata
+      when: set_timezone is changed
+  when: ansible_lsb.id|lower == "ubuntu" and ansible_distribution_version is version_compare('14.04', '==')
+
+- block:
+    - name: Set Timezone
+      command: "timedatectl set-timezone {{ _set_server_timezone.timezone }}"
+  when: ansible_lsb.id|lower == "ubuntu" and ansible_distribution_version is version_compare('14.04', '>')
