@@ -2,6 +2,7 @@ Set Server Timezone
 =========
 
 This role can be used to set the Server Timezone.
+
 ![Build Status](https://github.com/Rheinwerk/ansible-role-set_server_timezone/actions/workflows/ci.yml/badge.svg)
 
 
