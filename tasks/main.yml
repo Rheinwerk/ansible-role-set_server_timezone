@@ -4,7 +4,8 @@
 #
 # vim:et:ts=2:ft=ansible
 
-- block:
+- name: Ubuntu 14.04 tasks
+  block:
     - name: Set Timezone
       copy:
         content: '{{ _set_server_timezone.timezone }}\n'
@@ -20,7 +21,9 @@
       when: set_timezone is changed
   when: ansible_lsb.id|lower == "ubuntu" and ansible_distribution_version is version_compare('14.04', '==')
 
-- block:
+- name: Ubuntu 18.04 tasks
+  block:
     - name: Set Timezone
       command: "timedatectl set-timezone {{ _set_server_timezone.timezone }}"
+      changed_when: false
   when: ansible_lsb.id|lower == "ubuntu" and ansible_distribution_version is version_compare('14.04', '>')

@@ -1,13 +1,18 @@
 galaxy_info:
   author: Daniel Schneller
+  namespace: rheinwerk
+  role_name: set_server_timezone
   description:  Sets up the server timezone in Ubuntu
   company: Rheinwerk
   license: license (GPLv3)
-  min_ansible_version: 2.0
+  min_ansible_version: 2.9.0
+  # timezone can't be set inside container, skip molecule test
+  min_ansible_container_version: "X"
   platforms:
   - name: Ubuntu
     versions:
-    - trusty
+    - focal
+    - jammy
   galaxy_tags:
     - timezone
     - tzdata
