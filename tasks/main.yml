@@ -5,5 +5,5 @@
 # vim:et:ts=2:ft=ansible
 
 - name: Set Timezone
-  command: "timedatectl set-timezone {{ _set_server_timezone.timezone }}"
+  ansible.builtin.command: "timedatectl set-timezone {{ _set_server_timezone.timezone }}"
   changed_when: false
