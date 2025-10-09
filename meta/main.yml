@@ -1,6 +1,5 @@
 galaxy_info:
-  author: Daniel Schneller
-  namespace: rheinwerk
+  author: rheinwerk
   role_name: set_server_timezone
   description:  Sets up the server timezone in Ubuntu
   company: Rheinwerk
